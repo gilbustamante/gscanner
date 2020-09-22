@@ -6,8 +6,6 @@ import time
 #### ONLY EDIT THESE ####
 SLEEP_TIME = 3
 WRITE_KEY = 'v'
-START_KEY = f7 
-STOP_KEY = f8
 #### ONLY EDIT THESE ####
 
 SCAN_RUNNING = False
