@@ -3,10 +3,9 @@ import pyautogui
 import threading
 import time
 
-#### ONLY EDIT THESE ####
+# Edit these two to change key/frequency
 SLEEP_TIME = 3
 WRITE_KEY = 'v'
-#### ONLY EDIT THESE ####
 
 SCAN_RUNNING = False
 
