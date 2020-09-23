@@ -17,6 +17,9 @@ def start_scanning():
 
     while SCAN_RUNNING:
         time.sleep(SLEEP_TIME)
+        # For some reason pyautogui.press()
+        # doesn't play nice with the EVE
+        # client so the following are used instead
         pyautogui.keyDown(WRITE_KEY)
         pyautogui.keyUp(WRITE_KEY)
 
