@@ -6,4 +6,4 @@ GScanner uses the <code>pyautogui</code> and <code>pynput</code> modules. They c
 pip install pyautogui pynput
 ```
 ### Instructions
-Press F7 to start GScanner, F8 to 'pause,' and CTRL+C to quit.
+Press F7 to start GScanner, F8 to 'pause,' and CTRL+C to quit on Linux, CTRL+PAUSE/BREAK to quit on Windows.
