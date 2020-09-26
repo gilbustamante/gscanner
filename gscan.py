@@ -16,22 +16,23 @@ def start_scanning():
     SCAN_RUNNING = True
 
     while SCAN_RUNNING:
-        time.sleep(SLEEP_TIME)
         # For some reason pyautogui.press()
         # doesn't play nice with the EVE
         # client so the following are used instead
         pyautogui.keyDown(WRITE_KEY)
         pyautogui.keyUp(WRITE_KEY)
+        time.sleep(SLEEP_TIME)
 
 def on_press(key):
     global SCAN_RUNNING
     # Change 'f7' to whichever key you want to start
     if key == keyboard.Key.f7 and not SCAN_RUNNING:
         t = threading.Thread(target=start_scanning)
-        print('GScan running...')
+        print('GScan running')
         t.start()
     # Change 'f8' to whichever key you want to stop
     elif key == keyboard.Key.f8:
+        print('GScan paused')
         SCAN_RUNNING = False
         
 try:
