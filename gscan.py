@@ -2,6 +2,8 @@ from pynput import keyboard
 import pyautogui
 import threading
 import time
+import sys
+import platform
 
 # Edit these two to change key/frequency
 SLEEP_TIME = 3
@@ -9,7 +11,10 @@ WRITE_KEY = 'v'
 
 SCAN_RUNNING = False
 
-print('Press F7 to start, F8 to stop.')
+if platform.system() == 'Windows':
+    print('Press F7 to start, F8 to pause, CTRL+PAUSE/BREAK to quit.')
+else:
+    print('Press F7 to start, F8 to stop, CTRL+C to quit.')
 
 def start_scanning():
     global SCAN_RUNNING
@@ -40,3 +45,4 @@ try:
         listener.join()
 except KeyboardInterrupt:
     print('Closing GScan...')
+    sys.exit()
