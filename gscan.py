@@ -39,6 +39,9 @@ def on_press(key):
         SCAN_RUNNING = False
         
 if __name__ == '__main__':
+    # Disable pyautogui failsafe
+    pyautogui.FAILSAFE = False
+
     # Find OS and display instructions
     determine_os()
 
