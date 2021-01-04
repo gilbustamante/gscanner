@@ -7,3 +7,6 @@ pip install pyautogui pynput
 ```
 ### Instructions
 Press F7 to start GScanner, F8 to 'pause,' and CTRL+C to quit on Linux, CTRL+PAUSE/BREAK to quit on Windows.
+
+### Recent Changes
+- Removed pyautogui's failsafe (it could potentially break the script if user moves their cursor to the corner of the screen to quickly while playing)
