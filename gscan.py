@@ -16,7 +16,6 @@ def determine_os():
 
 def start_scanning():
     """Press the WRITE_KEY every SLEEP_TIME seconds"""
-    global SCAN_RUNNING
     SCAN_RUNNING = True
 
     while SCAN_RUNNING:
@@ -50,9 +49,6 @@ if __name__ == '__main__':
     # Edit these to change key/frequency
     SLEEP_TIME = 3
     WRITE_KEY = 'v'
-
-    # Start program paused
-    SCAN_RUNNING = False
 
     try:
         with keyboard.Listener(on_press=on_press) as listener:
