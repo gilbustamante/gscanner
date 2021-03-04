@@ -5,6 +5,8 @@ import time
 import sys
 import platform
 
+SCAN_RUNNING = False
+
 def determine_os():
     """If the user is using Windows, display appropriate instructions"""
     if platform.system() == 'Windows':
