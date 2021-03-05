@@ -7,12 +7,14 @@ import platform
 
 SCAN_RUNNING = False
 
+
 def determine_os():
     """If the user is using Windows, display appropriate instructions"""
     if platform.system() == 'Windows':
         print('Press F7 to start, F8 to pause, CTRL+PAUSE/BREAK to quit.')
     else:
         print('Press F7 to start, F8 to pause, CTRL+C to quit.')
+
 
 def start_scanning():
     """Press the WRITE_KEY every SLEEP_TIME seconds"""
@@ -26,6 +28,7 @@ def start_scanning():
         pyautogui.keyUp(WRITE_KEY)
         time.sleep(SLEEP_TIME)
 
+
 def on_press(key):
     """Check which key is being pressed and either start or pause"""
     global SCAN_RUNNING
@@ -38,7 +41,8 @@ def on_press(key):
     elif key == keyboard.Key.f8:
         print('GScan paused')
         SCAN_RUNNING = False
-        
+
+
 if __name__ == '__main__':
     # Disable pyautogui failsafe
     pyautogui.FAILSAFE = False
