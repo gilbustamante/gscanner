@@ -1,36 +1,25 @@
 import platform
 import time
 import threading
-import subprocess
 import sys
+try:
+    import pyautogui
+    from pynput import keyboard
+except ImportError:
+    print("Missing dependencies. Please make sure both of the following "
+          "Python modules are installed:")
+    print("\t- pynput")
+    print("\t- pyautogui")
+    sys.exit()
 
 ASCII_ART = """
- ██████╗ ███████╗ ██████╗ █████╗ ███╗   ██╗
-██╔════╝ ██╔════╝██╔════╝██╔══██╗████╗  ██║
-██║  ███╗███████╗██║     ███████║██╔██╗ ██║
-██║   ██║╚════██║██║     ██╔══██║██║╚██╗██║
-╚██████╔╝███████║╚██████╗██║  ██║██║ ╚████║
- ╚═════╝ ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═══╝
+ ██████╗       ███████╗ ██████╗ █████╗ ███╗   ██╗
+██╔════╝       ██╔════╝██╔════╝██╔══██╗████╗  ██║
+██║  ███╗█████╗███████╗██║     ███████║██╔██╗ ██║
+██║   ██║╚════╝╚════██║██║     ██╔══██║██║╚██╗██║
+╚██████╔╝      ███████║╚██████╗██║  ██║██║ ╚████║
+ ╚═════╝       ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═══╝
 """
-
-# Normally you wouldn't handle dependencies here...
-try:
-    from pynput import keyboard
-    import pyautogui
-except ImportError:
-    input("Some dependencies are missing. Automatically install them?\n"
-                "(press any key to install, CTRL+C or CTRL+BREAK/PAUSE to quit)")
-    print("Installing missing dependencies...\n")
-    subprocess.check_call([sys.executable, "-m", "pip", "install",
-                           "pynput", "pyautogui"])
-    print("\nFinished installing missing dependencies.\n")
-finally:
-    try:
-        from pynput import keyboard
-        import pyautogui
-    except ImportError:
-        print("\nDependencies not installed. Exiting.")
-        sys.exit()
 
 
 def determine_os():
@@ -38,7 +27,6 @@ def determine_os():
     Check which operating system user is running and display appropriate
     instructions.
     """
-
     if platform.system() == 'Windows':
         print('Press F7 to start, F8 to pause, CTRL+PAUSE/BREAK to quit.')
     else:
