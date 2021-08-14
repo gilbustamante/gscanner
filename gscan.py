@@ -1,13 +1,44 @@
-from pynput import keyboard
-import pyautogui
-import threading
-import time
-import sys
 import platform
+import time
+import threading
+import subprocess
+import sys
+
+ASCII_ART = """
+ ██████╗ ███████╗ ██████╗ █████╗ ███╗   ██╗
+██╔════╝ ██╔════╝██╔════╝██╔══██╗████╗  ██║
+██║  ███╗███████╗██║     ███████║██╔██╗ ██║
+██║   ██║╚════██║██║     ██╔══██║██║╚██╗██║
+╚██████╔╝███████║╚██████╗██║  ██║██║ ╚████║
+ ╚═════╝ ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═══╝
+"""
+
+# Normally you wouldn't handle dependencies here...
+try:
+    from pynput import keyboard
+    import pyautogui
+except ImportError:
+    input("Some dependencies are missing. Automatically install them?\n"
+                "(press any key to install, CTRL+C or CTRL+BREAK/PAUSE to quit)")
+    print("Installing missing dependencies...\n")
+    subprocess.check_call([sys.executable, "-m", "pip", "install",
+                           "pynput", "pyautogui"])
+    print("\nFinished installing missing dependencies.\n")
+finally:
+    try:
+        from pynput import keyboard
+        import pyautogui
+    except ImportError:
+        print("\nDependencies not installed. Exiting.")
+        sys.exit()
 
 
 def determine_os():
-    """If the user is using Windows, display appropriate instructions"""
+    """
+    Check which operating system user is running and display appropriate
+    instructions.
+    """
+
     if platform.system() == 'Windows':
         print('Press F7 to start, F8 to pause, CTRL+PAUSE/BREAK to quit.')
     else:
@@ -43,6 +74,7 @@ if __name__ == '__main__':
     pyautogui.FAILSAFE = False
 
     # Find OS and display instructions
+    print(ASCII_ART)
     determine_os()
 
     # Edit these to change key/frequency
