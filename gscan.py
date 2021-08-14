@@ -5,8 +5,6 @@ import time
 import sys
 import platform
 
-SCAN_RUNNING = False
-
 
 def determine_os():
     """If the user is using Windows, display appropriate instructions"""
@@ -15,35 +13,32 @@ def determine_os():
     else:
         print('Press F7 to start, F8 to pause, CTRL+C to quit.')
 
-
 def start_scanning():
     """Press the WRITE_KEY every SLEEP_TIME seconds"""
-    SCAN_RUNNING = True
-
     while SCAN_RUNNING:
-        # For some reason pyautogui.press()
-        # doesn't play nice with the EVE
+        # For some reason pyautogui.press() doesn't play nice with the EVE
         # client so the following are used instead
         pyautogui.keyDown(WRITE_KEY)
         pyautogui.keyUp(WRITE_KEY)
         time.sleep(SLEEP_TIME)
-
 
 def on_press(key):
     """Check which key is being pressed and either start or pause"""
     global SCAN_RUNNING
     # Change 'f7' to whichever key you want to start
     if key == keyboard.Key.f7 and not SCAN_RUNNING:
+        SCAN_RUNNING = True
         t = threading.Thread(target=start_scanning)
-        print('GScan running')
+        print('\nGScan running')
         t.start()
     # Change 'f8' to whichever key you want to stop
     elif key == keyboard.Key.f8:
-        print('GScan paused')
+        print('\nGScan paused')
         SCAN_RUNNING = False
-
-
+        
 if __name__ == '__main__':
+    SCAN_RUNNING = False
+
     # Disable pyautogui failsafe
     pyautogui.FAILSAFE = False
 
@@ -58,5 +53,5 @@ if __name__ == '__main__':
         with keyboard.Listener(on_press=on_press) as listener:
             listener.join()
     except KeyboardInterrupt:
-        print('Closing GScan...')
+        print('\nClosing GScan...')
         sys.exit()
